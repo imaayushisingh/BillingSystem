@@ -57,7 +57,30 @@ public class Inventory {
             System.out.println();
         }
     }
-    
+    public Product getProduct(int proId,int qty){
+       for(int i=0;i< newProductArr.length;i++){
+           if(newProductArr[i].getProId()==proId){
+               if(qty<=newProductArr[i].getQty()){
+                   saleTracker(qty,i);
+                   return newProductArr[i];
+               }
+               else{
+                   System.out.println("Insufficient Quantity!");
+                   return null;
+               }
+
+
+           }
+//           else{
+//               return null;  //had to remove this because function terminates as soon as it encounters return statement
+//           }
+        }
+        return null;
+    }
+    public void saleTracker(int quantity,int index){
+       int finalQty = newProductArr[index].getQty()-quantity;
+       newProductArr[index].setQty(finalQty);
+    }
 }
 
 
